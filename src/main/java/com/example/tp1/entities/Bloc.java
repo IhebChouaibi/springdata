@@ -1,19 +1,20 @@
 package com.example.tp1.entities;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.NonNull;
+import lombok.*;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-@Data
+@Getter
+@Setter
+@ToString
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Bloc {
+public class Bloc implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long  id;
@@ -21,5 +22,11 @@ public class Bloc {
     private String nomBloc;
     @Column(nullable = false)
     private Long capaciteFoyer;
+
+    @ManyToOne
+    @JoinColumn(name="foyer_id")
+    private Foyer foyer;
+    @OneToMany (mappedBy = "bloc")
+    private List<Chambre> chambres ;
 
 }

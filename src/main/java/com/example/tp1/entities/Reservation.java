@@ -1,19 +1,26 @@
 package com.example.tp1.entities;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.NonNull;
+import lombok.*;
 
+import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
-@Data
+@Getter
+@Setter
+@ToString
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Reservation {
-    @Id
+public class Reservation implements Serializable {
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idReservation;
     private LocalDate anneeUniversitaire;
     private Boolean estValide;
+
+    @ManyToMany
+    @JoinTable (name="reservation_etudiant" , joinColumns = @JoinColumn(name = "id_reservation" ),inverseJoinColumns = @JoinColumn(name = "etudiant_id"))
+    private List<Etudiant> etudiants =new ArrayList<>();
 }

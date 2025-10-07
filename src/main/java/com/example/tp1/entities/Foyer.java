@@ -1,23 +1,31 @@
 package com.example.tp1.entities;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.NonNull;
+import lombok.*;
 
-import java.util.ArrayList;
+import java.io.Serializable;
 import java.util.List;
 
-@Data
+
+@Getter
+@Setter
+@ToString
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Foyer {
+public class Foyer implements Serializable {
     @Id
     private Long idFoyer;
     @Column(nullable = false, name="nom")
     private String nomFoyer;
     @Column (nullable = false , name ="capacite")
     private String capaciteFoyer;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "foyer")
+
+    private List<Bloc> blocs;
+    @OneToOne ()
+    @JoinColumn(name="universite_id")
+    private Universite universite ;
+
 
 }

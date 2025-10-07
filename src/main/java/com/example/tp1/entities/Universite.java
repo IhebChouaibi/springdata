@@ -1,15 +1,17 @@
 package com.example.tp1.entities;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-@Data
+import java.io.Serializable;
+
+@Getter
+@Setter
+@ToString
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Universite
-{
+public class Universite implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idUniversite;
@@ -17,5 +19,7 @@ public class Universite
     private String nomUniversite;
     @Column(nullable = false, length = 100)
     private String adresse;
+    @OneToOne(mappedBy ="universite",optional = false)
+    private Foyer foyer  ;
 
 }

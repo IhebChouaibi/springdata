@@ -1,18 +1,20 @@
 package com.example.tp1.entities;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.NonNull;
+import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.List;
 
-@Data
+@Getter
+@Setter
+@ToString
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Etudiant {
+public class Etudiant implements Serializable {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idEdutiant;
 
@@ -26,4 +28,7 @@ public class Etudiant {
     private String ecole;
     @DateTimeFormat(style = "dd/mm/yyyy")
     private LocalDate dateNaissance;
+
+    @ManyToMany
+    private List<Reservation> reservations;
 }
