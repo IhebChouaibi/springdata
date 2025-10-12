@@ -14,6 +14,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Builder
 public class Etudiant implements Serializable {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idEdutiant;
