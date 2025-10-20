@@ -14,7 +14,6 @@ public class Tp1Application {
         SpringApplication.run(Tp1Application.class, args);
     }
 
-    @Bean
     CommandLineRunner init(EtudiantRepository etudiant) {
         return args -> {
             etudiant.save(Etudiant.builder().cin(11111L).nomEt("ahahahhah").ecole("sss").prenomEt("ehehheheheh").build());
