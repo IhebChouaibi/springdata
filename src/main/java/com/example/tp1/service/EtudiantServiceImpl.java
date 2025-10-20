@@ -5,6 +5,7 @@ import com.example.tp1.entities.Etudiant;
 import com.example.tp1.mapper.EtudiantMapper;
 import com.example.tp1.repositories.EtudiantRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -30,6 +31,16 @@ public class EtudiantServiceImpl implements EtudiantService {
 
 
 
+    }
+
+    @Override
+    public Page<EtudiantDto> getAllEtudiants(int page, int size) {
+        return null;
+    }
+
+    @Override
+    public Page<EtudiantDto> getAllEtudiantsBy(String nom, int page, int size) {
+        return null;
     }
 
 
